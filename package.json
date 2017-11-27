@@ -1,5 +1,5 @@
 {
-  "name": "Native Axis Automation",
+  "name": "nativeaxis",
   "version": "1.0.0",
   "description": "Sample Automation for Native Axis",
   "main": "wdio.conf.js",
@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "wdio"
   },
   "repository": {
     "type": "git",

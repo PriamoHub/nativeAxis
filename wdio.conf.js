@@ -1,5 +1,5 @@
 exports.config = {
-    
+
     //
     // ==================
     // Specify Test Files
@@ -9,6 +9,7 @@ exports.config = {
     // NPM script (see https://docs.npmjs.com/cli/run-script) then the current working
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
+    services: ['selenium-standalone'],
     specs: [
         './test/**/*.js'
     ],
@@ -72,8 +73,9 @@ exports.config = {
     //
     // Set a base URL in order to shorten url command calls. If your url parameter starts
     // with "/", then the base url gets prepended.
-    baseUrl: 'https://paclux.nativeaxis.com',
+    baseUrl: 'https://paclux.nativeaxis.com/',
     //
+    // Default timeout for all waitFor* commands.
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
     //
@@ -118,12 +120,13 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: http://webdriver.io/guide/testrunner/reporters.html
-    // reporters: ['dot'],
+    reporters: ['spec'],
     //
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
     mochaOpts: {
-        ui: 'bdd'
+        ui: 'bdd',
+        timeout: 99999999
     },
     //
     // =====
@@ -157,6 +160,16 @@ exports.config = {
      */
     // before: function (capabilities, specs) {
     // },
+
+
+    before: function() {
+        var chai = require('chai');
+        global.expect = chai.expect;
+        chai.Should();
+        browser.windowHandleMaximize();
+    }
+
+
     //
     /**
      * Hook that gets executed before the suite starts
